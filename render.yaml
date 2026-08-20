@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: billionaire-path-bot
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python billionaire-path-bot.py
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: BOT_NAME
+        value: Zico_Billionaire_Path_bot
+      - key: LOG_LEVEL
+        value: INFO
+      - key: DATA_DIR
+        value: /opt/render/project/src/data
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    disk:
+      name: bot-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
